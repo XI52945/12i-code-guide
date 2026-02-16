@@ -24,7 +24,7 @@ import GuideScreen from './src/screens/GuideScreen';
 const Stack = createNativeStackNavigator();
 
 const linking = {
-  prefixes: ['https://XI52945.github.io/12i-code-guide', 'expo-linking-scheme://'],
+  prefixes: ['https://XI52945.github.io/12i-code-guide', 'expo-linking-scheme://', '/'],
   config: {
     screens: {
       Home: '',

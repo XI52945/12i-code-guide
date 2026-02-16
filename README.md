@@ -36,7 +36,16 @@
 
 ## 🔗 在线体验
 
-👉 网页版预览：[https://XI52945.github.io/12i-code-guide](https://XI52945.github.io/12i-code-guide)
+👉 **GitHub Pages（推荐）**：[https://XI52945.github.io/12i-code-guide](https://XI52945.github.io/12i-code-guide)
+
+💡 **国内访问加速**：
+如果你无法访问上方链接，可以使用以下镜像地址（无需梯子，速度更快）：
+1.  **Vercel 镜像**：(部署后会自动生成，例如 `https://12i-code-guide.vercel.app`)
+2.  **Cloudflare Pages**：(部署后会自动生成，例如 `https://12i-code-guide.pages.dev`)
+
+> *注意：本项目已配置 `vercel.json`，你可以直接点击下方按钮一键免费部署到 Vercel，生成属于你自己的访问链接：*
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FXI52945%2F12i-code-guide)
 
 ## 🛠️ 本地运行
 
