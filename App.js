@@ -80,7 +80,7 @@ export default function App() {
           <Stack.Screen name="K8s" component={K8sScreen} options={{ title: 'K8s 命令' }} />
           <Stack.Screen name="Sql" component={SqlScreen} options={{ title: 'SQL 命令' }} />
           <Stack.Screen name="GithubEcosystem" component={GithubEcosystemScreen} options={{ title: 'GitHub 生态指南' }} />
-          <Stack.Screen name="Guide" component={GuideScreen} options={{ title: '新手引导 & 关于' }} />
+          <Stack.Screen name="Guide" component={GuideScreen} options={{ title: '新手引导手册' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import { commonConcepts, errors, syntax, memes, shortcuts, vibeCoding, roadmap, linux, git, docker, k8s, sql, githubEcosystem } from '../data';
 
 const menuItems = [
-  { id: 'Guide', title: '使用说明 & 关于', image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1000&auto=format&fit=crop', route: 'Guide' },
+  { id: 'Guide', title: '新手引导手册', image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1000&auto=format&fit=crop', route: 'Guide' },
   { id: 'Roadmap', title: '全栈开发导图', image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop', route: 'Roadmap' },
   { id: 'CommonConcepts', title: '基础概念速查', image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop', route: 'CommonConcepts' },
   { id: 'Errors', title: '常见报错解释', image: 'https://images.unsplash.com/photo-1555861496-0666c8981751?q=80&w=1000&auto=format&fit=crop', route: 'Errors' },
