@@ -10,7 +10,6 @@ const GuideScreen = () => {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>新手引导手册</Text>
         <Text style={styles.headerSubtitle}>开启你的 Vibe Coding 之旅</Text>
       </View>
 
