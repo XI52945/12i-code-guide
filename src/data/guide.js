@@ -2,7 +2,7 @@ export const guideData = [
   {
     id: 'intro',
     title: '👋 欢迎来到代码世界',
-    content: '编程不仅仅是敲击键盘，它是你与数字世界对话的语言，是把想象力转化为现实的魔法。\n\n在 AI 时代，我们提倡 "Vibe Coding" —— 这里的 "Vibe" 是一种感觉，一种心流。你不需要像过去那样死记硬背每一行晦涩的语法，而是要学会像指挥家一样，理解逻辑，驾驭 AI，让代码随着你的思维流淌。\n\n12i Code 正是基于这个理念诞生的：它不是一本厚重的教科书，而是一个随时待命的智能罗盘（Smart Compass）。当你迷茫时，它为你指路；当你困惑时，它为你解惑。让我们一起，轻松愉快地开启这段旅程。',
+    content: '编程不仅仅是敲击键盘，它是你与数字世界对话的语言，是把想象力转化为现实的魔法。\n\n在 AI 时代，我们提倡 "Vibe Coding" —— 这里的 "Vibe" 是一种感觉，一种心流。你不需要像过去那样死记硬背每一行晦涩的语法，而是要学会像指挥家一样，理解逻辑，驾驭 AI，让代码随着你的思维流淌。\n\n12i Code 正是基于这个理念诞生的：它不是一本厚重的教科书，而是一个随时待命的副驾驶。当你迷茫时，它为你指路；当你困惑时，它为你解惑。让我们一起，轻松愉快地开启这段旅程。',
     icon: '🚀'
   },
   {
@@ -23,7 +23,9 @@ export const guideData = [
     content: '我是 12i，一个热爱代码、设计与分享的开发者。12i Code 是我为你准备的礼物，希望能成为你编程路上的好朋友。\n\n如果你在使用中遇到问题，或者想交流学习心得，欢迎通过以下方式找到我。让我们一起交流，共同进步！',
     links: [
       { label: 'GitHub', value: 'XI52945', url: 'https://github.com/XI52945', display: '12i (XI52945)' },
-      { label: '小红书', value: '12i000', url: 'https://www.xiaohongshu.com/user/profile/12i000', display: '12i (号: 12i000)' }
+      { label: '小红书', value: '12i000', url: 'https://www.xiaohongshu.com/user/profile/12i000', display: '12i (号: 12i000)' },
+      { label: '项目源码', value: 'Repo', url: 'https://github.com/XI52945/12i-code-guide', display: 'GitHub 仓库' },
+      { label: '网页版', value: 'Web', url: 'https://XI52945.github.io/12i-code-guide', display: '在线预览' }
     ],
     icon: 'user'
   }

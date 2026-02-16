@@ -2,11 +2,14 @@
   "name": "coding-guide-app",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://XI52945.github.io/12i-code-guide",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "deploy": "gh-pages -d dist",
+    "build:web": "npx expo export --platform web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
@@ -28,6 +31,7 @@
   },
   "private": true,
   "devDependencies": {
-    "babel-preset-expo": "^54.0.10"
+    "babel-preset-expo": "^54.0.10",
+    "gh-pages": "^6.3.0"
   }
 }
