@@ -23,6 +23,29 @@ import GuideScreen from './src/screens/GuideScreen';
 
 const Stack = createNativeStackNavigator();
 
+const linking = {
+  prefixes: ['https://XI52945.github.io/12i-code-guide', 'expo-linking-scheme://'],
+  config: {
+    screens: {
+      Home: '',
+      Guide: 'guide',
+      Roadmap: 'roadmap',
+      CommonConcepts: 'concepts',
+      Errors: 'errors',
+      Syntax: 'syntax',
+      Linux: 'linux',
+      Git: 'git',
+      Docker: 'docker',
+      K8s: 'k8s',
+      Sql: 'sql',
+      Memes: 'memes',
+      Shortcuts: 'shortcuts',
+      AiAgent: 'vibe-coding',
+      GithubEcosystem: 'github',
+    },
+  },
+};
+
 function LogoTitle() {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
@@ -39,7 +62,7 @@ function LogoTitle() {
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
         <StatusBar style="auto" />
         <Stack.Navigator
           initialRouteName="Home"
