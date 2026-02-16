@@ -24,8 +24,8 @@ export const guideData = [
     links: [
       { label: 'GitHub', value: 'XI52945', url: 'https://github.com/XI52945', display: '12i (XI52945)' },
       { label: '小红书', value: '12i000', url: 'https://www.xiaohongshu.com/user/profile/12i000', display: '12i (号: 12i000)' },
-      { label: '项目源码', value: 'Repo', url: 'https://github.com/XI52945/12i-code-guide', display: 'GitHub 仓库' },
-      { label: '网页版', value: 'Web', url: 'https://XI52945.github.io/12i-code-guide', display: '在线预览' }
+      { label: '项目源码', value: 'Repo', url: 'https://github.com/XI52945/12i-code-guide', display: 'https://github.com/XI52945/12i-code-guide' },
+      { label: '网页版', value: 'Web', url: 'https://XI52945.github.io/12i-code-guide', display: 'https://XI52945.github.io/12i-code-guide' }
     ],
     icon: 'user'
   }
