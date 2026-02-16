@@ -1,0 +1,55 @@
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+// import { View } from 'react-native';
+import HomeScreen from './src/screens/HomeScreen';
+import BasicConceptsScreen from './src/screens/BasicConceptsScreen';
+import ErrorsScreen from './src/screens/ErrorsScreen';
+import StructuresScreen from './src/screens/StructuresScreen';
+import SyntaxScreen from './src/screens/SyntaxScreen';
+import MemesScreen from './src/screens/MemesScreen';
+import ShortcutsScreen from './src/screens/ShortcutsScreen';
+import AiAgentScreen from './src/screens/AiAgentScreen';
+// import RoadmapScreen from './src/screens/RoadmapScreen';
+import LinuxScreen from './src/screens/LinuxScreen';
+import GitScreen from './src/screens/GitScreen';
+import DockerScreen from './src/screens/DockerScreen';
+import K8sScreen from './src/screens/K8sScreen';
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator 
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#fff',
+            },
+            headerTintColor: '#333',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} options={{ title: '12code' }} />
+          <Stack.Screen name="BasicConcepts" component={BasicConceptsScreen} options={{ title: '基础概念' }} />
+          <Stack.Screen name="Errors" component={ErrorsScreen} options={{ title: '错误代码解释' }} />
+          <Stack.Screen name="Structures" component={StructuresScreen} options={{ title: '数据结构图解' }} />
+          <Stack.Screen name="Syntax" component={SyntaxScreen} options={{ title: '语法对比' }} />
+          <Stack.Screen name="Memes" component={MemesScreen} options={{ title: '编程梗百科' }} />
+          <Stack.Screen name="Shortcuts" component={ShortcutsScreen} options={{ title: '快捷键速查' }} />
+          <Stack.Screen name="AiAgent" component={AiAgentScreen} options={{ title: 'Ai Agent' }} />
+          {/* <Stack.Screen name="Roadmap" component={RoadmapScreen} options={{ title: '全栈开发导图' }} /> */}
+          <Stack.Screen name="Linux" component={LinuxScreen} options={{ title: 'Linux 命令' }} />
+          <Stack.Screen name="Git" component={GitScreen} options={{ title: 'Git 命令' }} />
+          <Stack.Screen name="Docker" component={DockerScreen} options={{ title: 'Docker 命令' }} />
+          <Stack.Screen name="K8s" component={K8sScreen} options={{ title: 'K8s 命令' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
+  );
+}
