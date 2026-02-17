@@ -8,6 +8,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "build": "npx expo export --platform web",
     "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "build:web": "npx expo export --platform web",
     "build:gh-pages": "set EXPO_PUBLIC_IS_GH_PAGES=true && npx expo export --platform web && echo. > dist/.nojekyll"
