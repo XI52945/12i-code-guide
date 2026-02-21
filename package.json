@@ -5,8 +5,8 @@
   "homepage": "https://XI52945.github.io/12i-code-guide",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "build": "npx expo export --platform web",
     "deploy": "npm run build:gh-pages && gh-pages -d dist --nojekyll",
@@ -29,7 +29,8 @@
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
     "react-native-svg": "15.12.1",
-    "react-native-web": "^0.21.0"
+    "react-native-web": "^0.21.0",
+    "react-native-worklets": "0.5.1"
   },
   "private": true,
   "devDependencies": {
