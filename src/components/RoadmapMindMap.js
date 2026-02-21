@@ -13,8 +13,10 @@ const CONNECTOR_WIDTH = 30;
 const NODE_RADIUS = 8;
 const CORNER_RADIUS = NODE_RADIUS + 2;
 
-const MindMapNode = ({ node, isRoot = false, isFirst = false, isLast = false, onSelectNode }) => {
-  const [expanded, setExpanded] = useState(true);
+const MindMapNode = ({ node, isRoot = false, isFirst = false, isLast = false, onSelectNode, depth = 0 }) => {
+  // Default expanded state: Root (depth 0) is expanded to show Level 1.
+  // Level 1 nodes (depth 1) are collapsed by default.
+  const [expanded, setExpanded] = useState(depth < 1);
   
   const hasChildren = node.children && node.children.length > 0;
   
@@ -95,6 +97,7 @@ const MindMapNode = ({ node, isRoot = false, isFirst = false, isLast = false, on
                 isFirst={index === 0}
                 isLast={index === node.children.length - 1}
                 onSelectNode={onSelectNode}
+                depth={depth + 1}
               />
             ))}
           </View>
@@ -106,10 +109,24 @@ const MindMapNode = ({ node, isRoot = false, isFirst = false, isLast = false, on
 
 export default function RoadmapMindMap() {
   const [selectedNode, setSelectedNode] = useState(null);
-  const [contentSize, setContentSize] = useState({ width: 0, height: 0 });
 
-  const scale = useSharedValue(1.0);
-  const savedScale = useSharedValue(1.0);
+  // Gesture Handling for 2D Pan and Zoom
+  const scale = useSharedValue(1);
+  const savedScale = useSharedValue(1);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const savedTranslateX = useSharedValue(0);
+  const savedTranslateY = useSharedValue(0);
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      translateX.value = savedTranslateX.value + e.translationX;
+      translateY.value = savedTranslateY.value + e.translationY;
+    })
+    .onEnd(() => {
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
+    });
 
   const pinch = Gesture.Pinch()
     .onUpdate((e) => {
@@ -119,58 +136,30 @@ export default function RoadmapMindMap() {
       savedScale.value = scale.value;
     });
 
-  const animatedStyle = useAnimatedStyle(() => {
-    // Clamp scale
-    const currentScale = Math.max(0.4, Math.min(scale.value, 3.0));
-    
-    // Scale container size
-    const width = contentSize.width * currentScale;
-    const height = contentSize.height * currentScale;
-    
-    // Adjust position for center scaling
-    const translateX = (contentSize.width * (currentScale - 1)) / 2;
-    const translateY = (contentSize.height * (currentScale - 1)) / 2;
+  const composed = Gesture.Simultaneous(pan, pinch);
 
-    return {
-      width,
-      height,
-      transform: [
-        { scale: currentScale },
-        { translateX },
-        { translateY }
-      ]
-    };
-  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
+  }));
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal contentContainerStyle={styles.scrollContent} showsHorizontalScrollIndicator={true}>
-        <ScrollView contentContainerStyle={styles.verticalScrollContent} showsVerticalScrollIndicator={true}>
-          {/* Zoom Wrapper */}
-          <GestureDetector gesture={pinch}>
-            <Animated.View style={[
-              styles.zoomContainer, 
-              animatedStyle,
-              { position: 'relative' }
-            ]}>
-              <View 
-                style={styles.mindMapWrapper}
-              >
-                <View 
-                  style={styles.mindMapContainer}
-                  onLayout={(e) => setContentSize(e.nativeEvent.layout)}
-                >
-                  <MindMapNode 
-                    node={roadmap} 
-                    isRoot={true} 
-                    onSelectNode={setSelectedNode}
-                  />
-                </View>
-              </View>
-            </Animated.View>
-          </GestureDetector>
-        </ScrollView>
-      </ScrollView>
+      <GestureDetector gesture={composed}>
+        <View style={styles.gestureContainer}>
+          <Animated.View style={[styles.mindMapContainer, animatedStyle]}>
+            <MindMapNode 
+              node={roadmap} 
+              isRoot={true} 
+              onSelectNode={setSelectedNode}
+              depth={0}
+            />
+          </Animated.View>
+        </View>
+      </GestureDetector>
 
       {/* Detail Modal */}
       <Modal
@@ -218,6 +207,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative', // For absolute positioning of zoom controls
+  },
+  gestureContainer: {
+    flex: 1,
+    overflow: 'hidden',
+    backgroundColor: '#f5f7fa',
   },
   scrollContent: {
     padding: 40,

@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.4)',
   },
   label: {
-    fontSize: 44,
+    fontSize: 22,
     fontWeight: '800',
     color: '#FFFFFF',
     textAlign: 'center',

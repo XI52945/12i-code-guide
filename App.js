@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './src/screens/HomeScreen';
 import CommonConceptsScreen from './src/screens/CommonConceptsScreen';
@@ -25,9 +26,9 @@ const Stack = createNativeStackNavigator();
 
 const linking = {
   prefixes: [
-    'https://XI52945.github.io/12i-code-guide', 
-    'expo-linking-scheme://', 
-    '/12i-code-guide', // Add this specifically for the subpath
+    'https://XI52945.github.io/12i-code-guide',
+    'expo-linking-scheme://',
+    '/12i-code-guide',
     '/'
   ],
   config: {
@@ -51,6 +52,12 @@ const linking = {
   },
 };
 
+// Debug log to verify App is running
+if (typeof window !== 'undefined') {
+  console.log('App is starting...');
+  console.log('Current URL:', window.location.href);
+}
+
 function LogoTitle() {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
@@ -71,7 +78,7 @@ export default function App() {
         <StatusBar style="auto" />
         <Stack.Navigator
           initialRouteName="Home"
-          screenOptions={{
+          screenOptions={({ navigation }) => ({
             headerStyle: {
               backgroundColor: '#fff',
               elevation: 0,
@@ -85,7 +92,16 @@ export default function App() {
             },
             headerTitleAlign: 'center',
             headerTintColor: '#333',
-          }}
+            headerLeft: ({ canGoBack }) => 
+              canGoBack ? (
+                <TouchableOpacity 
+                  onPress={() => navigation.goBack()}
+                  style={{ marginRight: 15 }}
+                >
+                  <Ionicons name="chevron-back" size={28} color="#333" />
+                </TouchableOpacity>
+              ) : undefined,
+          })}
         >
           <Stack.Screen 
             name="Home" 

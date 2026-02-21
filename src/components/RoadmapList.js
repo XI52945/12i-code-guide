@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { roadmap } from '../data/roadmap';
 
 const Node = ({ node, level = 0 }) => {
@@ -67,17 +69,72 @@ const Node = ({ node, level = 0 }) => {
 };
 
 export default function RoadmapList() {
+  // Gesture Handling for 2D Pan and Zoom
+  const scale = useSharedValue(1);
+  const savedScale = useSharedValue(1);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const savedTranslateX = useSharedValue(0);
+  const savedTranslateY = useSharedValue(0);
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      translateX.value = savedTranslateX.value + e.translationX;
+      translateY.value = savedTranslateY.value + e.translationY;
+    })
+    .onEnd(() => {
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
+    });
+
+  const pinch = Gesture.Pinch()
+    .onUpdate((e) => {
+      scale.value = savedScale.value * e.scale;
+    })
+    .onEnd(() => {
+      savedScale.value = scale.value;
+    });
+
+  const composed = Gesture.Simultaneous(pan, pinch);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
+  }));
+
   return (
-    <View style={styles.treeContainer}>
-      <Node node={roadmap} level={0} />
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>数据来源：本地离线知识库</Text>
-      </View>
+    <View style={styles.container}>
+      <GestureDetector gesture={composed}>
+        <View style={styles.gestureContainer}>
+          <Animated.View style={[styles.listWrapper, animatedStyle]}>
+            <View style={styles.treeContainer}>
+              <Node node={roadmap} level={0} />
+            </View>
+          </Animated.View>
+        </View>
+      </GestureDetector>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  gestureContainer: {
+    flex: 1,
+    backgroundColor: '#f5f7fa',
+    overflow: 'hidden',
+  },
+  listWrapper: {
+    padding: 20,
+    minHeight: '100%',
+  },
   treeContainer: {
     paddingBottom: 40,
   },
@@ -166,13 +223,5 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 22,
     textAlign: 'justify',
-  },
-  footer: {
-    padding: 20,
-    alignItems: 'center',
-  },
-  footerText: {
-    fontSize: 12,
-    color: '#999',
   }
 });

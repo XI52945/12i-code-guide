@@ -3,19 +3,12 @@ import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-nati
 import RoadmapList from '../components/RoadmapList';
 import RoadmapMindMap from '../components/RoadmapMindMap';
 
-export default function RoadmapScreen() {
-  const [viewMode, setViewMode] = useState('mindmap'); // 'mindmap' or 'list'
+export default function RoadmapScreen({ navigation }) {
+  const [viewMode, setViewMode] = useState('list'); // 'mindmap' or 'list'
 
-  return (
-    <View style={styles.container}>
-      {/* Header with Toggle */}
-      <View style={styles.header}>
-        <View>
-      <Text style={styles.headerTitle}>全栈开发导图</Text>
-          <Text style={styles.headerSubtitle}>
-            {viewMode === 'mindmap' ? '👉 滑动查看完整导图' : '👇 点击节点展开详细内容'}
-          </Text>
-        </View>
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
         <View style={styles.toggleContainer}>
           <TouchableOpacity 
             style={[styles.toggleButton, viewMode === 'mindmap' && styles.activeToggle]}
@@ -30,16 +23,18 @@ export default function RoadmapScreen() {
             <Text style={[styles.toggleText, viewMode === 'list' && styles.activeToggleText]}>列表</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      ),
+    });
+  }, [navigation, viewMode]);
 
+  return (
+    <View style={styles.container}>
       {/* Content */}
       <View style={styles.content}>
         {viewMode === 'mindmap' ? (
           <RoadmapMindMap />
         ) : (
-          <ScrollView style={styles.listContainer}>
-            <RoadmapList />
-          </ScrollView>
+          <RoadmapList />
         )}
       </View>
     </View>
@@ -66,11 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 4,
   },
   toggleContainer: {
     flexDirection: 'row',

@@ -1,5 +1,5 @@
 
-const IS_GH_PAGES = process.env.EXPO_PUBLIC_IS_GH_PAGES === 'true';
+const IS_GH_PAGES = (process.env.EXPO_PUBLIC_IS_GH_PAGES || '').trim() === 'true';
 
 export default {
   expo: {
