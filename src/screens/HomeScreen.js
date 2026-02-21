@@ -4,20 +4,20 @@ import SearchBar from '../components/SearchBar';
 import { commonConcepts, errors, syntax, memes, shortcuts, vibeCoding, roadmap, linux, git, docker, k8s, sql, githubEcosystem } from '../data';
 
 const menuItems = [
-  { id: 'Guide', title: '新手引导手册', image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1000&auto=format&fit=crop', route: 'Guide' },
-  { id: 'Roadmap', title: '全栈开发导图', image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop', route: 'Roadmap' },
-  { id: 'CommonConcepts', title: '基础概念速查', image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop', route: 'CommonConcepts' },
-  { id: 'Errors', title: '常见报错解释', image: 'https://images.unsplash.com/photo-1555861496-0666c8981751?q=80&w=1000&auto=format&fit=crop', route: 'Errors' },
-  { id: 'Syntax', title: '常用语法对比', image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop', route: 'Syntax' },
-  { id: 'AiAgent', title: 'Vibe Coding 指南', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop', route: 'AiAgent' },
-  { id: 'GithubEcosystem', title: 'GitHub 生态指南', image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1000&auto=format&fit=crop', route: 'GithubEcosystem' },
-  { id: 'Linux', title: 'Linux 命令', image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1000&auto=format&fit=crop', route: 'Linux' },
-  { id: 'Git', title: 'Git 命令', image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=1000&auto=format&fit=crop', route: 'Git' },
-  { id: 'Docker', title: 'Docker 命令', image: 'https://images.unsplash.com/photo-1512418490979-92798cec1380?q=80&w=1000&auto=format&fit=crop', route: 'Docker' },
-  { id: 'K8s', title: 'K8s 命令', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop', route: 'K8s' },
-  { id: 'Sql', title: 'SQL 命令', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop', route: 'Sql' },
-  { id: 'Memes', title: '编程梗', image: 'https://i.imgflip.com/1h7in3.jpg', route: 'Memes' },
-  { id: 'Shortcuts', title: '快捷键', image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1000&auto=format&fit=crop', route: 'Shortcuts' },
+  { id: 'Guide', title: '新手引导手册', image: require('../../assets/home/guide.jpg'), route: 'Guide' },
+  { id: 'Roadmap', title: '全栈开发导图', image: require('../../assets/home/roadmap.jpg'), route: 'Roadmap' },
+  { id: 'CommonConcepts', title: '基础概念速查', image: require('../../assets/home/concepts.jpg'), route: 'CommonConcepts' },
+  { id: 'Errors', title: '常见报错解释', image: require('../../assets/home/errors.jpg'), route: 'Errors' },
+  { id: 'Syntax', title: '常用语法对比', image: require('../../assets/home/syntax.jpg'), route: 'Syntax' },
+  { id: 'AiAgent', title: 'Vibe Coding 指南', image: require('../../assets/home/ai.jpg'), route: 'AiAgent' },
+  { id: 'GithubEcosystem', title: 'GitHub 生态指南', image: require('../../assets/home/github.jpg'), route: 'GithubEcosystem' },
+  { id: 'Linux', title: 'Linux 命令', image: require('../../assets/home/linux.jpg'), route: 'Linux' },
+  { id: 'Git', title: 'Git 命令', image: require('../../assets/home/git.jpg'), route: 'Git' },
+  { id: 'Docker', title: 'Docker 命令', image: require('../../assets/home/docker.jpg'), route: 'Docker' },
+  { id: 'K8s', title: 'K8s 命令', image: require('../../assets/home/k8s.jpg'), route: 'K8s' },
+  { id: 'Sql', title: 'SQL 命令', image: require('../../assets/home/sql.jpg'), route: 'Sql' },
+  { id: 'Memes', title: '编程梗', image: require('../../assets/home/memes.jpg'), route: 'Memes' },
+  { id: 'Shortcuts', title: '快捷键', image: require('../../assets/home/shortcuts.jpg'), route: 'Shortcuts' },
 ];
 
 const MenuCard = ({ item, navigation }) => {
@@ -34,7 +34,7 @@ const MenuCard = ({ item, navigation }) => {
       onPress={() => navigation.navigate(item.route)}
     >
       <ImageBackground
-        source={{ uri: item.image }}
+        source={item.image}
         style={styles.cardBackground}
         imageStyle={{ borderRadius: 20 }}
         resizeMode="cover"
