@@ -52,12 +52,6 @@ const linking = {
   },
 };
 
-// Debug log to verify App is running
-if (typeof window !== 'undefined') {
-  console.log('App is starting...');
-  console.log('Current URL:', window.location.href);
-}
-
 function LogoTitle() {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
